@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+<script>
+    function openwebterm(){
+        window.open("/webterm1",'newwindow','height=400,width=800,top=0,')
+    }
+</script>
+
+</head>
+<body>
+welcome{{ username }}<br>
+
+<form enctype="multipart/form-data" name="upform" action="/upload1" method="post">
+    <input type="file" name="upload">
+    <input type="submit" value="upload">
+</form>
+<button name="begin" onclick="openwebterm();">compile</button>
+
+</div>
+</body>
+</html>

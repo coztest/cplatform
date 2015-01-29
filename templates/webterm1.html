@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">//<![CDATA[
+    $(function () {
+        var s = new WebSocket('ws://127.0.0.1:8000/echo');
+        s.onopen = function () {
+            console.log('WebSocket open');
+        };
+        s.onmessage = function (e) {
+            console.log('message: ' + e.data);
+				window.scrollTo(0,document.body.scrollHeight)
+            $('#messagecontainer').append('<p>' + e.data + '</p>');
+				
+        };
+        window.s = s;
+
+        $('#send_message').click(function () {
+            s.send($('#message').val());
+        });
+        $('#clear').click(function () {
+            $('#messagecontainer').html("");
+
+        });
+
+		
+
+    });
+    //]]></script>
+
+
+
+</head>
+<body>
+welcome{{ username }}<br>
+
+<input type="text" id="message" value="input your command!" />
+<button type="button" id="send_message">Send message</button>
+<button type="button" id="clear">clear</button>
+<h1>Received Messages</h1>
+<div id="messagecontainer">
+
+</div>
+</body>
+</html>
