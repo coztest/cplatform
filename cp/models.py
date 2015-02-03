@@ -10,9 +10,9 @@ class User(models.Model):
 class Project(models.Model):
     proj_name = models.CharField(max_length=30)
     user = models.ForeignKey(User)
-    begin_time = models.DateTimeField(auto_now=True)
-    end_time = models.DateTimeField(auto_now=True)
-    is_success = models.BooleanField()
+    create_time = models.DateTimeField(auto_now=True)
+    sourcelist = models.CharField(max_length=100)
+    complete_proj = models.CharField(max_length=200)
 class Instance(models.Model):
     name = models.CharField(max_length=30)
     available = models.BooleanField(default=True)

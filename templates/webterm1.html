@@ -36,6 +36,12 @@
 </head>
 <body>
 welcome{{ username }}<br>
+<form enctype="multipart/form-data" name="upform" action="/upload1/{{ proj_id }}" method="post">
+    <input type="file" name="upload">
+    <input type="submit" value="upload">
+</form>
+
+
 
 <input type="text" id="message" value="input your command!" />
 <button type="button" id="send_message">Send message</button>

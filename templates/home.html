@@ -3,25 +3,93 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            $('#newproj_button').click(function () {
+                $('#newproj_content').toggle("slow")
+            });
+
+
+
+
+        });
+        function openwebterm1(proj_id){
+            window.open("/webterm1/"+proj_id,'newwindow','height=400,width=800,top=0,scrollbars=yes')
+        }
+        function openwebterm2(proj_id){
+            window.open("/webterm2/"+proj_id,'newwindow','height=400,width=800,top=0,scrollbars=yes')
+        }
+        function openwebterm3(proj_id){
+            window.open("/webterm3/"+proj_id,'newwindow','height=400,width=800,top=0,scrollbars=yes')
+        }
+
+
+
+    </script>
+
 </head>
 <body>
 welcome{{ username }}
-<div border="1">
-    {% if i1_avai  %}
-        <a href="/instance1">enter into instance1</a>
-    {% else %}
-         instance1 is not available
-    {% endif %}
+<br>
+<a id="newproj_button" href="javascript:void(0)">新建任务</a>
+<div id="newproj_content" style="display: none">
+    <form method="post" action="/newproj">
+        任务名称:<input type="text" name="proj_name"><br>
+        <input type="submit" value="新建">
+
+    </form>
+
 
 </div>
 <br>
-<div border="1">
-    <a href="/instance2">enter into instance2</a>
-</div>
-<br>
-<div border="1">
-    <a href="/instance3">enter into instance3</a>
-</div>
+
+已存在任务
+<table border="1">
+    <thead>
+        <tr>
+            <td>任务名称</td>
+            <td>任务包含源码</td>
+            <td>编译成功源码</td>
+            <td>任务建立时间</td>
+            <td>选择编译终端</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for proj in proj_list %}
+        <tr>
+            <td>{{ proj.proj_name }}</td>
+            <td>{{ proj.sourcelist }}</td>
+            <td>{{ proj.complete_proj }}</td>
+            <td>{{ proj.create_time }}</td>
+            <td>
+                {% if i1_avai  %}
+                    <a href="javascript:void(0)" onclick="openwebterm1({{ proj.id }});">instance1</a>
+                {% else %}
+                     instance1 is not available
+                {% endif %}
+                <a href="javascript:void(0)" onclick="openwebterm2({{ proj.id }});">instance2</a>
+
+                <a href="javascript:void(0)" onclick="openwebterm3({{ proj.id }});">instance3</a>
+
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+    {% if i1_avai  %}
+        <a href="/instance1">instance1</a>
+    {% else %}
+         instance1 is not available
+    {% endif %}
+    <a href="/instance2">instance2</a>
+
+    <a href="/instance3">instance3</a>
 
 </body>
 </html>

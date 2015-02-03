@@ -9,8 +9,10 @@ urlpatterns = patterns('',
 #    url(r'^admin/', include(admin.site.urls)),
      url(r'^mainpage$', views.mainpage),
      url(r'^instance1$',views.instance1),
-     url(r'^upload1$',views.upload1),
-     url(r'^webterm1$',views.webterm1),
+     url(r'^upload1/(\d+)$',views.upload1),
+     url(r'^webterm1/(\d+)$',views.webterm1),
+     url(r'^newproj$',views.newproj),
+
     url(r'^echo$',views.echo),
 
 )
