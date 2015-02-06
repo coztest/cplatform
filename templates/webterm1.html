@@ -19,14 +19,27 @@
         window.s = s;
 
         $('#send_message').click(function () {
-            s.send($('#message').val());
+            s.send($('#message').val() + "-{{ proj_id }}");
+            window.opener.location.reload()
         });
         $('#clear').click(function () {
             $('#messagecontainer').html("");
-
         });
 
-		
+        window.onunload=function (){
+            window.opener.location.reload()
+        }
+
+
+        document.onkeydown = function(event)
+        {
+            if (event.keyCode == 67 && event.ctrlKey) {
+                s.send("stop" + "-{{ proj_id }}");
+                window.opener.location.reload()
+
+            }
+        }
+
 
     });
     //]]></script>
