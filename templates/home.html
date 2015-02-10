@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="/static/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
         $(function () {
 
@@ -54,6 +54,7 @@ welcome{{ username }}
             <td>编译成功源码</td>
             <td>任务建立时间</td>
             <td>选择编译终端</td>
+            <td>查看结果</td>
         </tr>
     </thead>
     <tbody>
@@ -72,9 +73,13 @@ welcome{{ username }}
                 <a href="javascript:void(0)" onclick="openwebterm2({{ proj.id }});">instance2</a>
 
                 <a href="javascript:void(0)" onclick="openwebterm3({{ proj.id }});">instance3</a>
-
-
             </td>
+            <td>
+                <a href="/sr/{{ username }}/{{ proj.id }}/sources/" target="_blank">已上传源码</a>
+                <a href="/sr/{{ username }}/{{ proj.id }}/results/" target="_blank">编译结果</a>
+                <a href="/sr/{{ username }}/{{ proj.id }}/logs/" target="_blank">编译日志</a>
+            </td>
+
         </tr>
         {% endfor %}
     </tbody>
